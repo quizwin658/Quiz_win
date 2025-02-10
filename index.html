@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz & Win - কুইজ খেলুন পুরষ্কার জিতুন!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .quiz-container {
+            margin-top: 30px;
+            display: none;
+        }
+        .timer {
+            font-size: 30px;
+            font-weight: bold;
+            color: red;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answer-options {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #quiz-form {
+            text-align: center;
+        }
+        #result {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quiz & Win - জিতুন মজার কুইজ খেলে!</h1>
+    <p>কুইজ খেলুন, সঠিক উত্তর দিয়ে জিতে নিন আকর্ষণীয় পুরস্কার!</p>
+    <p>⏳ সময়: ০২ মিনিট</p>
+    <p>✅ প্রতিটি সঠিক উত্তর: ১০ পয়েন্ট</p>
+    <p>📌 নাম ও ফোন নম্বর দিয়ে অংশগ্রহণ করুন</p>
+
+    <button onclick="showForm()">start</button>
+
+    <div id="quiz-form" style="display: none;">
+        <h3>ফর্ম পূরণ করুন</h3>
+        <input type="text" id="name" placeholder="নাম" required><br><br>
+        <input type="text" id="phone" placeholder="ফোন নম্বর" required><br><br>
+        <button onclick="startQuiz()">ফর্ম পূরণ করুন</button>
+    </div>
+
+    <div id="quiz-container" class="quiz-container">
+        <div id="timer" class="timer">02:00</div>
+
+        <div id="questions">
+            <!-- Question 1 -->
+            <div id="question1" class="question">
+                <p>বাংলাদেশের জাতীয় ফুল কোনটি?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q1" value="b"> শাপলা</label><br>
+                    <label><input type="radio" name="q1" value="a"> গোলাপ</label><br>
+                    <label><input type="radio" name="q1" value="c"> জবা</label><br>
+                    <label><input type="radio" name="q1" value="d"> সূর্যমুখী</label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div id="question2" class="question">
+                <p>বিশ্বের সবচেয়ে বড় মহাদেশ কোনটি?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q2" value="c"> এশিয়া</label><br>
+                    <label><input type="radio" name="q2" value="a"> ইউরোপ</label><br>
+                    <label><input type="radio" name="q2" value="b"> আফ্রিকা</label><br>
+                    <label><input type="radio" name="q2" value="d"> দক্ষিণ আমেরিকা</label>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div id="question3" class="question">
+                <p>বাংলাদেশের মুদ্রার এককের নাম কী?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q3" value="b"> টাকা</label><br>
+                    <label><input type="radio" name="q3" value="a"> রুপি</label><br>
+                    <label><input type="radio" name="q3" value="c"> দিনার</label><br>
+                    <label><input type="radio" name="q3" value="d"> ডলার</label>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div id="question4" class="question">
+                <p>মানব শরীরের বৃহত্তম অঙ্গ কোনটি?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q4" value="b"> ত্বক</label><br>
+                    <label><input type="radio" name="q4" value="a"> হৃদপিণ্ড</label><br>
+                    <label><input type="radio" name="q4" value="c"> যকৃত</label><br>
+                    <label><input type="radio" name="q4" value="d"> ফুসফুস</label>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div id="question5" class="question">
+                <p>পৃথিবীর দীর্ঘতম নদী কোনটি?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q5" value="a"> নীল নদ</label><br>
+                    <label><input type="radio" name="q5" value="b"> আমাজন</label><br>
+                    <label><input type="radio" name="q5" value="c"> গঙ্গা</label><br>
+                    <label><input type="radio" name="q5" value="d"> মিসিসিপি</label>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div id="question6" class="question">
+                <p>সূর্য কী ধরনের তারা?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q6" value="a"> লাল দৈত্য</label><br>
+                    <label><input type="radio" name="q6" value="b"> শ্বেত বামন</label><br>
+                    <label><input type="radio" name="q6" value="c"> হলুদ বামন</label><br>
+                    <label><input type="radio" name="q6" value="d"> নিউট্রন তারা</label>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div id="question7" class="question">
+                <p>বিশ্বের সবচেয়ে বড় প্রাণী কোনটি?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q7" value="b"> আফ্রিকান হাতি</label><br>
+                    <label><input type="radio" name="q7" value="a"> ব্লু হোয়েল</label><br>
+                    <label><input type="radio" name="q7" value="c"> জিরাফ</label><br>
+                    <label><input type="radio" name="q7" value="d"> সাদা তিমি</label>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div id="question8" class="question">
+                <p>বিশ্বের সবচেয়ে ছোট দেশ কোনটি?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q8" value="b"> মোনাকো</label><br>
+                    <label><input type="radio" name="q8" value="a"> ভ্যাটিকান সিটি</label><br>
+                    <label><input type="radio" name="q8" value="c"> নাউরু</label><br>
+                    <label><input type="radio" name="q8" value="d"> সান মেরিনো</label>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div id="question9" class="question">
+                <p>বিশ্বের সবচেয়ে বড় সমুদ্র কোনটি?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q9" value="c"> প্রশান্ত মহাসাগর</label><br>
+                    <label><input type="radio" name="q9" value="a"> আর্কটিক মহাসাগর</label><br>
+                    <label><input type="radio" name="q9" value="b"> আটলান্টিক মহাসাগর</label><br>
+                    <label><input type="radio" name="q9" value="d"> ভারত মহাসাগর</label>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div id="question10" class="question">
+                <p>কোনটি পৃথিবীর একমাত্র প্রাকৃতিক উপগ্রহ?</p>
+                <div class="answer-options">
+                    <label><input type="radio" name="q10" value="b"> সূর্য</label><br>
+                    <label><input type="radio" name="q10" value="a"> চাঁদ</label><br>
+                    <label><input type="radio" name="q10" value="c"> মঙ্গল</label><br>
+                    <label><input type="radio" name="q10" value="d"> শুক্র</label>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="submitQuiz()">Submit</button>
+    </div>
+
+    <div id="result" style="display:none;">
+        <h2>আপনার স্কোর: <span id="score"></span></h2>
+    </div>
+
+    <script>
+        let timer = 120;
+        let score = 0;
+        let timerInterval;
+
+        function showForm() {
+            document.getElementById("quiz-form").style.display = "block";
+        }
+
+        function startQuiz() {
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+
+            if (name === "" || phone === "") {
+                alert("অনুগ্রহ করে নাম ও ফোন নম্বর দিন!");
+                return;
+            }
+
+            document.getElementById("quiz-form").style.display = "none";
+            document.getElementById("quiz-container").style.display = "block";
+            startTimer();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(function () {
+                let minutes = Math.floor(timer / 60);
+                let seconds = timer % 60;
+                if (seconds < 10) seconds = "0" + seconds;
+                document.getElementById("timer").innerText = minutes + ":" + seconds;
+
+                if (timer <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                } else {
+                    timer--;
+                }
+            }, 1000);
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            let answers = {
+                "q1": "b",
+                "q2": "c",
+                "q3": "b",
+                "q4": "b",
+                "q5": "a",
+                "q6": "c",
+                "q7": "a",
+                "q8": "a",
+                "q9": "c",
+                "q10": "a"
+            };
+
+            score = 0;
+            for (let key in answers) {
+                let selectedOption = document.querySelector(`input[name="${key}"]:checked`);
+                if (selectedOption && selectedOption.value === answers[key]) {
+                    score += 10;
+                }
+            }
+
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("result").style.display = "block";
+            document.getElementById("score").innerText = score + " পয়েন্ট";
+        }
+    </script>
+
+</body>
+</html>
